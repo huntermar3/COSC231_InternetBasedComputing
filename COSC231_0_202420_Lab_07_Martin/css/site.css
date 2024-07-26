@@ -1,0 +1,46 @@
+body {
+	background-color:LightGrey; 
+}
+hr {
+	margin:20px;
+	border:3px solid #7C8363;
+	border-radius: 3px;
+}
+#my_table {
+	background-color:#EDF4F2;
+	color:#31473A;
+}
+table, th, td {
+	border:1px solid black;
+	border-collapse:collapse;
+}
+th:hover, td:hover {
+	background-color:LightGrey;
+}
+.tbl_row_headers {
+	padding:10px;
+	text-align:center;
+}
+.tbl_row_data {
+	padding-left:40px;
+	padding-right:40px;
+	text-align:right;
+}
+
+
+/*  
+ * REF-URL: https://www.w3schools.com/colors/colors_trends.asp
+ * Living Coral
+ * #FF6F61
+ * PANTONE 16-1546
+*/
+
+.warning {
+	color:#FF6F61;
+}
+
+.warning:hover {
+	color:black;
+	font-weight:bold;
+	background-color: #FF6F61;
+}

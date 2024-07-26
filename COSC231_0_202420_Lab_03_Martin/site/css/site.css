@@ -1,0 +1,53 @@
+body{
+    background-color: lightgrey;
+}
+
+hr {
+    margin: 20px;
+    border: 3px solid #7C8363;
+    border-radius: 3px; 
+}
+
+#my_header, #my_footer {
+    margin: 20px;
+    background-color: #EDF4F2;
+    color: #31473A ;
+}
+
+#my_input, #my_output {
+    margin: 40px ;
+}
+
+#my_table { 
+    color: #31473A ;
+    background-color: #EDF4F2 ;
+}
+
+#my_table, #my_table th, #my_table td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#my_table th:hover, #my_table td:hover{
+    background-color: lightgrey ;
+}
+
+.tbl_row_headers{
+    margin: 10px;
+    text-align: left;
+}
+
+.tbl_row_eqns{
+    margin: 10px;
+    text-align: left;
+}
+
+.tbl_row_data{
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: left;
+}
+
+#copyright, #my_contact{
+    padding: 20px;
+}

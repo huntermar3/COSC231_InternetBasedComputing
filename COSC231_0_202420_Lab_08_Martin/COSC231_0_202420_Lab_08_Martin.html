@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- You may only modify the comments immediately below this comment 
+	and the body of function match_pattern() 
+-->
+<!-- 
+	Class: COSC 231.0
+	Name: Hunter Martin 
+	Lab:  08
+	Date: 2024-03-23 T 23:59:59 Z-04:00
+
+	Requires: nothing; stand-alone document.
+	
+	Description: This lab explores regular expressions. We have a box to represent a string and another box
+	that you can type in a custom regular expression that searches through the string to see if there is a match.
+	Used .exec that returns an array of the matched region.
+
+--> 
+
+<html dir="ltr" lang="en-US">
+<head>
+
+
+	<meta charset="utf-8">
+	<title>Lab 08 - Regex Tester</title>
+
+
+</head>
+<body>
+
+
+<h1>Regular Expressions - Basic Tester</h1>
+
+
+<hr>
+<hr>
+
+<h2>Input:</h2>
+<form action="javascript:match_pattern();">
+
+
+	<div id="div_my_string">
+		<label for="input_string" >
+			Step 1: Enter a string of text (without quotes at the beginning/end):
+		</label>	
+		<br>
+		&quot;
+		<input type="text" id="input_string"  value="The rain in Spain..."  >
+		&quot;
+	</div> <!-- end of <div id="div_my_string" > -->
+	
+	
+	<br>
+	
+	
+	<div id="div_my_regex">
+		<label for="input_regex" >
+			Step 2: Enter a regular expression to bind to the string above(without any //) :
+		</label>
+		<br>
+		&#x002F;
+		<input type="text" id="input_regex"     value="[a-z]+"  >
+		&#x002F;
+		<br>
+		<label for="input_regex">e.g., type \u9589 for '閉' , type \u0061 for 'a' , etc. </label>
+	</div> <!-- end of <div id="div_my_regex"> -->
+
+	
+	<br>
+	
+	
+	<div id="div_my_buttons">	
+		<label for="btn_submit" >
+			Step 3: Press &lt;Submit&gt; to see results below, 
+			or press &lt;Reset&gt; to reset the inputs.
+		</label>
+		<br>
+		<input type="submit" value="Submit" id="btn_submit">
+		<input type="reset" value="Reset">
+	</div> <!-- end of <div id="div_my_buttons"> -->
+	
+	
+</form>
+
+
+<br>
+
+
+<hr>
+<hr>
+	
+	
+<div id="div_my_output">
+	<h2>Output:</h2>
+	<p id="output_string" style="border:1px solid black;background-color:lightgrey;">See directions above.</p>
+	<p>
+		<span id="match_false"   style="color:red;"   >No match.</span>
+		<span id="match_true"  style="color:green;" >Match (match region highlighted).</span>
+	</p>
+</div> <!-- end of <div id="div_my_output"> -->
+
+
+<br>
+
+
+<hr>
+<hr>
+<hr>
+
+
+
+<script>
+
+
+	function match_pattern() {
+	 // YOU MAY ONLY ADD CODE BELOW THIS LINE.
+	
+	 //we need to reference output_string,input_string, input_regex, 
+	 let outputString = document.getElementById("output_string");
+	 let inputString = document.getElementById("input_string").value ;
+	 let inputRegex = document.getElementById("input_regex").value;
+	 
+
+	 //we create a regex expression since the user can input any regular expression
+	 let regex = new RegExp(inputRegex) ;
+
+	 //split the match into an array but in this its only match[0] that contains the match. .exec returns an array that 
+	 //returns only one thing which in this case is the match.
+	 let match = regex.exec(inputString);
+	 //console.log(match) ;
+
+	 if(match){
+		//we need a prematch, postmatch, and lets create the variable that references out match even though its redundant
+
+		//match.index is the very beginning of the match region
+		let prematch = inputString.substring(0,match.index) ;
+		//console.log(prematch);
+
+		let postmatch = inputString.substring(match.index + match[0].length);
+		//console.log(postmatch);
+
+		let actualMatch = match[0];
+		//console.log(actualMatch);
+
+		//we want the gray box to contain the entire text but highlight "lightblue"
+		//the actual matched region. Since we are coloring a certain part within the text we are going to prob. need to use <span>
+		outputString.innerHTML = prematch + "<span style = 'background-color: LightBlue;'>" + actualMatch + "</span>"  + postmatch ;
+
+		document.getElementById("match_false").style.visibility = "hidden" ;
+		document.getElementById("match_true").style.visibility  = "visible" ;
+
+
+
+	 } else{
+		outputString.innerHTML = "Please try again." ;
+		document.getElementById("match_false").style.visibility = "visible" ;
+		document.getElementById("match_true").style.visibility  = "hidden" ;
+	 }
+	 // YOU MAY ONLY ADD CODE ABOVE THIS LINE.
+	}
+
+
+</script>
+
+
+<script>
+	document.getElementById("match_false").style.visibility = "hidden";
+	document.getElementById("match_true").style.visibility = "hidden";
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- 
+	Class: COSC 231.0
+	Name: Hunter Martin
+	Lab:  07
+	Date: 2024-03-11 T 23:59:59 Z-04:00
+
+	Requires: Requires CSS styling in ../css/site.css
+			  Requires JS code in ../js/WCH_2wk.js
+			  Requires JSON data at URL: https://emunix.emich.edu/~pfrancisi/emich/demos/231json_demo/WCH_2wk.json
+
+	Description: The lab is simliar to lab 6 but we are loading data using AJAX. The Ajax works once you press the button.
+
+--> 
+
+
+
+<html lang="en-US" dir="ltr">
+
+	<head>
+	
+		<meta charset="UTF-8">
+		<title>Lab 07 : WCH 2-Week Sorted</title>
+		
+		<link rel="stylesheet" href="../css/site.css">
+		<script src="../js/WCH_2wk.js"></script>
+
+		<script> 
+			url_json = "https://emunix.emich.edu/~pfrancisi/emich/demos/231json_demo/WCH_2wk.json";
+
+
+		</script>
+		
+	</head>
+	
+	<body>
+	
+		<h1>WCH 2-Week Warnings :</h1>
+		<h3>Flood Alert at Wolf Creek for 722' asl</h3>
+		<hr>
+		<table id="my_table">
+			<thead>
+				<tr>
+					<th class="tbl_row_headers">LOCAL<br>GAGETIME:</th>
+					<th class="tbl_row_headers">UPSTREAM<br>ELEVATION:</th>
+				</tr>
+			</thead>
+		</table>
+		<hr>
+		<div id="div_note_button">
+			<p>Note: this page uses AJAX to asynchronously fetch data from server.</p>
+			<button type="button" 
+				onclick="get_json_file(url_json, insert_content);">
+				Press
+			</button>
+		</div> <!-- end of <div id="div_note_button"> -->
+	
+
+		<script>
+
+		function get_json_file(url, f) {
+			var xhttp;
+			xhttp=new XMLHttpRequest();
+			console.log("readyState" + "\t" + "Status" );
+			xhttp.onreadystatechange = function() {
+					console.log( this.readyState + "\t" + this.status );
+					if (this.readyState == 4 && this.status == 200) {
+							f(this);
+					}
+			};
+			xhttp.open("GET", url, true);
+			xhttp.send();
+		}	
+
+		</script>
+
+	</body>
+</html>

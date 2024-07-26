@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- Class: COSC 231.0-->
+<!-- Name: Hunter Martin-->
+<!-- Project: 01-->
+<!-- Date: 2024-02-14 WED T 22:07:10 z-05:00 -->
+<!-- Description: Simple HTML page, with a 9x3 table.External file for CSS styling. Using HTML Entities &Sigma, &radica, x&#x0304- for sample mean -->
+<!-- In this lab we implemented simple javascript that was provided to us. Use a button, alert, and console.log.-->
+<!-- In this part of the lab we used for loops, .innerHTML , etc -->
+<!-- We are completing the rest of the table. We calculate for size, min, max, sum , mean, median , variance, and standard deviation. -->
+<!-- We also used for the first time an external js file.-->
+<!-- Requires: ../css/site.css -->
+<!-- Requires: ../script/stats_function.js -->
+<html>
+<html lang = "en" dir = "ltr" > 
+
+<head>  
+<meta charset = "UTF-8"> 
+<title> Project 01: Stats </title>
+<link rel = "stylesheet" href = "../css/site.css" >
+<script src = "../script/stats_function.js"> </script>
+<script>
+    function  update_parse_string_into_array_of_ordered_asc_nums(str) {
+
+        //this removes all the whitespace the user entered. 
+        str_cleaned = str.replace(/\s+|\n|\r|\t/g, "");
+
+        //split an array called "arr_nums" . So when the user entered the set of nums there are commas. The commas seperate
+        //each index of this array.
+        arr_nums = str_cleaned.split(",").map(Number);
+
+        //sorting the array
+        arr_nums.sort(function(a, b){return a - b});
+
+        //return arr
+        return arr_nums ;
+
+
+    }
+
+    function update_stats(){
+
+        //remain the same as last lab
+        let input_text = document.getElementById("input_set");
+
+        //set a variable so we can reference our table
+        let cells = document.getElementsByClassName("tbl_row_data") ;
+
+
+        //new variables listed in rubric
+        let str_to_parse = input_text.value ;
+        let x = update_parse_string_into_array_of_ordered_asc_nums(str_to_parse) ;
+        
+        //prints out the length of array x
+        console.log("x.length: " + x.length) ;
+        console.log("--------------------------") ;
+
+        //for loop that loop through our array x and print out each value
+        for(let i = 0 ; i < x.length ; i++) {
+            console.log("x["+ i + "]" + ":" + x[i]) ;
+            console.log() ;
+        }
+        console.log("--------------------------") ;
+
+
+        //step 1 list the array the user just entered 
+        
+        //step 2 total num of elements in the array user entered
+        let n = x.length ;
+        
+        //step 3 min which is the first index of the array
+        let x_min = x[0] ;
+
+        //step 4 max which will be the last index of the array
+        let x_max = x[x.length - 1] ;
+
+        //step 5 will be the sum of the array
+        let sum = calculate_array_sum(x) ;
+
+        //step 6 mean
+        let x_bar = calculate_mean(sum, n) ;
+    
+        //step 7 median
+        let x_tilde = calculate_median(x);
+
+        //step 8 variance
+        let variance = calculate_variance( x, x_bar ) ;
+       
+        //step 9 std deviation
+        let std_dev = calculate_stddev(variance) ;
+       
+        //print statements to the console presenting all of our data
+        console.log("Step 1 : [ " + x + "]") ;
+        console.log("Step 2 : [ "+ n + "]");
+        console.log("Step 3: " + "[" + x_min + "]") ;
+        console.log("Step 4: " + "[" + x_max + "]") ;
+        console.log("Step 5: " + "[" + sum + "]") ;
+        console.log("Step 6: " + "[" + x_bar + "]") ;
+        console.log("Step 7: " + "[" + x_tilde + "]") ;
+        console.log("Step 8: " + "[" + variance + "]") ;
+        console.log("Step 9: " + "[" + std_dev + "]") ;
+      
+        const eqn_RHSs = [
+            x, n, x_min, x_max, sum,
+            x_bar, x_tilde, variance, std_dev
+        ];
+        
+        //change the contents in the table 
+        for(let i = 0 ; i < cells.length ; i++) {
+            if(i == 0) {
+                cells[i].innerHTML = eqn_LHSs[i] + "(" + x + ")" ;
+            } else {
+            cells[i].innerHTML = eqn_LHSs[i] + eqn_RHSs[i];
+        }
+    }
+}
+</script>
+</head>
+
+<body> 
+    <!-- header begins here only has one h1 element-->
+    <header id = "my_header"> 
+       <h1>Sample Set Statistics:</h1>
+    </header>
+<hr> 
+<div id = "my_output" >
+   <h2>Statistics for the given sample set:</h2> 
+   <!-- beginning of the table -->
+    <table id = "my_table"> 
+        <!-- The table format is the following: 1 row, 2 headers, and 1 td. For 9 rows -->
+        <tr>
+            <th class="tbl_row_headers">Sample Set (Ordered): </th>
+            <th class="tbl_row_eqns">x = (x<sub>1</sub> ... ,x<sub>n</sub> ) </th>
+            <td class="tbl_row_data">x = (1,3,5,7,9)</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Size:</th>
+            <th class="tbl_row_eqns">n = size(x) or x.length</th>
+            <td class="tbl_row_data">n = 5</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Minimum:</th>
+            <th class="tbl_row_eqns">x<sub>min</sub> = x<sub>1</sub> </th>
+            <td class="tbl_row_data">x<sub>min</sub></td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Maximum:</th>
+            <th class="tbl_row_eqns">x<sub>max</sub>=x<sub>n</sub></th>
+            <td class="tbl_row_data">x<sub>max</sub>= 9</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Sum:</th>
+            <th class="tbl_row_eqns">(i=1:n)&Sigma;x<sub>i</sub></th>
+            <td class="tbl_row_data">&Sigma;=25</td>
+        </tr>
+        <tr> 
+            <th class="tbl_row_headers">Sample Mean:</th>
+            <th class="tbl_row_eqns">x&#x0304=(&Sigma;x<sub>i</sub>)/n</th>
+            <td class="tbl_row_data">x&#x0304=5</td>
+        </tr>
+        <tr>
+            <!-- I used two divs because I couldn't get the spacing correctly on a new line.-->
+            <th class="tbl_row_headers">Sample Median:</th>
+            <th class="tbl_row_eqns"><div>1&deg;(n%2 == 0); x&#x0304 = x<sub>(n+1)/2</sub> </div>
+            <div class="tbl_row_eqns">2&deg;(n%2 == 1): x&#x0304 = x<sub>n/2</sub> + x<sub>n/2+1</sub> /2</div> </th>
+            <td class="tbl_row_data">x&#x0303 =5</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Variance:</th>
+            <th class="tbl_row_eqns">s<sup>2</sup> = (&Sigma;(x<sub>i</sub> - x&#x0304)<sup>2</sup>)/n-1</th>
+            <td class="tbl_row_data">s<sup>2</sup> = 10</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Standard Deviation:</th>
+            <th class="tbl_row_eqns">s &radic;(s<sup>2</sup>) </th>
+            <td class="tbl_row_data">s = 3.1622777</td>
+        </tr>
+    </div>
+</table> 
+        <hr>
+        <!-- the div under the table. Assuming tyhe next lab is goign to utilize this option-->
+        <div id = "my_input">
+            <h2>Input New Sample Set</h2>
+            <p>Input a comma separated set of numbers and press the button to calculate a new table</p>
+            <form id = "input_form"> 
+                <label for= "input_set"> Comma-Seperated Values </label>
+                <br>
+                <input type = "text" id = "input_set" name = "TODO" value="1,3,5,7,9">
+                </form>
+                <button onclick = "update_stats()" value = "Submit">Calculate</button>
+        </div>
+        <hr>
+<footer id = "my_footer">
+    <div id = "copyright">&copy; - 2024 Hunter Martin
+    <address id = "my_contact"> 
+        <p>Written by <a href="Hunter Martin">Hunter Martin</a></p>
+        <p><a href = "734-333-3333">734-333-3333</a></p>
+        <p>Visit <a href = "http://emich.edu">EMU</a></p>
+    
+    </address>
+</footer>
+
+</body>
+</html>

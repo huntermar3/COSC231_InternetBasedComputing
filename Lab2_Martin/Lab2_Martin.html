@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<!-- Class: COSC 231.0-->
+<!-- Name: Hunter Martin-->
+<!-- Lab:  02-->
+<!-- Date: 2024-01-23 TUE T 14:29:10 z-05:00 -->
+<!-- Description: Simple HTML page, with a 2x4 table.External file for CSS styling-->
+<!-- Requires: CSS/style.css -->
+
+<html>
+<html lang = “en” dir = "ltr" > 
+
+<head>  
+<meta charset = “UTF-8”> 
+<title>Hourly Readings 2019-01 </title>
+<!-- reference for the styling I used throughout the HTML file --> 
+<link rel= "stylesheet" href= "CSS/style.css" >
+</head>
+
+<body> 
+    <!-- the h1  (biggest heading) -->
+<h1> Hourly Readings 2019-01 </h1>
+<hr> 
+<div id = “table_monthly”> 
+<table> 
+	<tr> 
+        <!-- First row. I used th because its the table heading to show whats in the column. -->
+		<th>GAGE TIME UTC: </th>
+		<th>ELEVATION UPSTREAM: </th>
+		<th>ELEVATION DOWNSTREAM: </th>
+		<th>DISCHARGE HOURLY AVG: </th>
+	</tr> 
+	<tr>
+        <!-- Second row. td is used here instead of th because it is not a heading -->
+		<td>2019-01-01T00:00:00Z </td> 
+		<td>717.80 </td> 
+		<td>561.80 </td> 
+		<td>23480 </td> 
+	</tr> 
+</table> 
+</div> 
+<hr> 
+<!-- div tag for copyright and the &copy is the actual copyright symbol-->
+<div id="copyright">&copy; 2023 Hunter Martin </div> 
+</body>
+</html> 
+

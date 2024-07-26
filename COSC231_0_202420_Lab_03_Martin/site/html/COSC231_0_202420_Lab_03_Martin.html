@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- Class: COSC 231.0-->
+<!-- Name: Hunter Martin-->
+<!-- Lab:  03-->
+<!-- Date: 2024-01-29 MON T 11:07:10 z-05:00 -->
+<!-- Description: Simple HTML page, with a 9x3 table.External file for CSS styling. Using HTML Entities &Sigma, &radica, x&#x0304- for sample mean -->
+<!-- Requires: COSC231_0_202420_Lab_03_Martin/site/css/style.css -->
+<html>
+<html lang = "en" dir = "ltr" > 
+
+<head>  
+<meta charset = "UTF-8"> 
+<title> Lab 03: Stats </title>
+<link rel = "stylesheet" href = "/COSC231_0_202420_Lab_03_Martin/site/css/site.css" >
+</head>
+
+<body> 
+    <!-- header begins here only has one h1 element-->
+    <header id = "my_header"> 
+       <h1>Sample Set Statistics</h1>
+    </header>
+<hr> 
+<div id = "my_output" >
+   <h2>Statistics for the given sample set:</h2> 
+   <!-- beginning of the table -->
+    <table id = "my_table"> 
+        <!-- The table format is the following: 1 row, 2 headers, and 1 td. For 9 rows -->
+        <tr>
+            <th class="tbl_row_headers">Sample Set (Ordered): </th>
+            <th class="tbl_row_eqns">x = (x<sub>1</sub> ... ,x<sub>n</sub> ) </th>
+            <td class="tbl_row_data">x = (1,3,5,7,9)</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Size:</th>
+            <th class="tbl_row_eqns">n = size(x) or x.length</th>
+            <td class="tbl_row_data">n = 5</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Minimum</th>
+            <th class="tbl_row_eqns">x<sub>min</sub> = x<sub>1</sub> </th>
+            <td class="tbl_row_data">x<sub>min</sub></td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Maximum</th>
+            <th class="tbl_row_eqns">x<sub>max</sub>=x<sub>n</sub></th>
+            <td class="tbl_row_data">x<sub>max</sub>= 9</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Sum</th>
+            <th class="tbl_row_eqns">(i=1:n)&Sigma;x<sub>i</sub></th>
+            <td class="tbl_row_data">&Sigma;=25</td>
+        </tr>
+        <tr> 
+            <th class="tbl_row_headers">Sample Mean:</th>
+            <th class="tbl_row_eqns">x&#x0304=(&Sigma;x<sub>i</sub>)/n</th>
+            <td class="tbl_row_data">x&#x0304=5</td>
+        </tr>
+        <tr>
+            <!-- I used two divs because I couldn't get the spacing correctly on a new line.-->
+            <th class="tbl_row_headers">Sample Median:</th>
+            <th class="tbl_row_eqns"><div>1&deg;(n%2 == 0); x&#x0304 = x<sub>(n+1)/2</sub> </div>
+            <div class="tbl_row_eqns">2&deg;(n%2 == 1): x&#x0304 = x<sub>n/2</sub> + x<sub>n/2+1</sub> /2</div> </th>
+            <td class="tbl_row_data">x&#x0303 =5</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Variance:</th>
+            <th class="tbl_row_eqns">s<sup>2</sup> = (&Sigma;(x<sub>i</sub> - x&#x0304)<sup>2</sup>)/n-1</th>
+            <td class="tbl_row_data">s<sup>2</sup> = 10</td>
+        </tr>
+        <tr>
+            <th class="tbl_row_headers">Sample Standard Deviation:</th>
+            <th class="tbl_row_eqns">s &radic;(s<sup>2</sup>)= </th>
+            <td class="tbl_row_data">s = 3.1622777</td>
+        </tr>
+    </div>
+</table> 
+        <hr>
+        <!-- the div under the table. Assuming tyhe next lab is goign to utilize this option-->
+        <div id = "my_input">
+            <h2>More Info:</h2>
+            <p>The table above shows how to calculate various statisitcs</p>
+            <hr>
+        </div>
+<footer id = "my_footer">
+    <div id = "copyright">&copy; - 2024 Hunter Martin
+    <address id = "my_contact"> 
+        <p>Written by <a href="Hunter Martin">Hunter Martin</a></p>
+        <p><a href = "734-333-3333">734-333-3333</a></p>
+        <p>Visit <a href = "http://emich.edu">EMU</a></p>
+    
+    </address>
+</footer>
+
+</body>
+</html>

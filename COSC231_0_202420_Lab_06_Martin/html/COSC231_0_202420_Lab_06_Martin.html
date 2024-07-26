@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<!-- 
+	Class: COSC 231.0
+	Name: Hunter Martin
+	Lab:  06
+	Date: 2024-03-09 T 23:59:59 Z-05:00
+
+	Requires: Requires CSS styling in ../css/site.css
+			  Requires JS code in ../js/WCH_2wk.js
+	
+	Description: Creates a table that contains timestamps and elevation levels for flood levels in some place called
+	Wolf Creek. 
+
+--> 
+
+
+
+<html lang="en-US" dir="ltr">
+
+	<head>
+	
+		<meta charset="UTF-8">
+		<title>Lab 06 : WCH 2-Week Alert</title>
+		
+		<link rel="stylesheet" href="../css/site.css">
+		<script src="../js/WCH_2wk.js"></script>
+
+		<script> 
+
+		//we need this function because this will load all the contents before it runs
+		window.onload = init;
+		
+		function init() {
+			//majority of code will be in this script tag 
+			let death_limit = 722;
+
+			//empty array with values we are going to store in it
+			const LGTS = [] ;
+
+			//empty object 
+			const LGTS_UPES = {} ;
+			
+			//STEP 4
+			//all we care abt is LOCALGAGETIME and UPSTREAM_ELEV. We are putting info into LGTS_UPE
+			//also we are using the timestamp(localgagetime) as a key that corresponds to the upstream elev
+			for(let i = 0 ; i < WCH_2wk.length ; i++){
+				//variable to reach each individual thing we need
+				let object = WCH_2wk[i];
+				const timestamp = object.LOCALGAGETIME ;
+				const elevation = object.UPSTREAM_ELEV;
+				
+				LGTS_UPES[timestamp] = elevation ;
+			}
+			console.log(LGTS_UPES) ;
+
+			//STEP 5
+			//loop through LGTS_UPES and insert the timestamps aka localgagetime and store them into LGTS
+			//note that LGTS_UPES is an object at this point and not an array can not use .length
+			//we have to use a for in loop to loop through our obj LGTS_UPES
+			let i = 0 ;
+			for(const timestamp in LGTS_UPES) {
+				LGTS[i] = timestamp ;
+				i++
+			}
+			//console.log(LGTS) ;
+
+			//STEP 6 
+			//sort LGTS we can just use .sort
+			LGTS.sort();
+			
+
+			//STEP 7
+			//use each timestamp at each index to get its 
+			//corresponding upstream elevation value that’s still in the object/hash LGTs_UPEs and create rows and
+			//these into two values into table data cells. 
+			for(let i = 0 ; i < LGTS.length ; i++) {
+				//the timestamps are stored in LGTS we can create a vari to reference that
+				const timestamps = LGTS[i];
+
+				//the elevation are stored in the hash so we can create a vari to reference that
+				const elevation = LGTS_UPES[timestamps] ;
+
+				//we need to create elements so we can start by creating a row
+				const row = document.createElement("tr") ;
+
+				//now that the row is created we need to create two seperate cells for timestamps and elevation
+				const timestampCell = document.createElement("td") ;
+				timestampCell.innerHTML= timestamps;
+				timestampCell.classList.add("tbl_row_data") ;
+
+				//second one for elevation
+				const elevationCell = document.createElement("td") ;
+				elevationCell.innerHTML = elevation ;
+				elevationCell.classList.add("tbl_row_data") ;
+				if(elevation >= death_limit) {
+					elevationCell.classList.add("warning") ;
+				}
+
+				//append new data to the row
+				row.appendChild(timestampCell) ;
+				row.appendChild(elevationCell) ;
+
+				//now that we have a row we can now append to the table
+				let table = document.getElementById("my_table") ;
+				table.appendChild(row) ;
+			}
+
+		}
+
+		
+		</script>
+		
+	</head>
+	
+	<body>
+	
+		<h1>WCH 2-Week Warnings :</h1>
+		<h3>Flood Alert at Wolf Creek for 722' asl</h3>
+		<hr>
+		<table id="my_table">
+			<thead>
+				<tr>
+					<th class="tbl_row_headers">LOCAL<br>GAGETIME:</th>
+					<th class="tbl_row_headers">UPSTREAM<br>ELEVATION:</th>
+				</tr>
+			</thead>
+		</table>
+	
+	
+	
+
+		<script>
+		
+
+		</script>
+
+	</body>
+</html>
